@@ -1,0 +1,34 @@
+# Discord Gemini Bot
+
+A Discord bot built with Python that integrates the Gemini API. It features multi-personalities, per-user memory, image reading, channel summarization, an intimacy system, and scheduled active messaging.
+
+## Setup Instructions
+
+1. Clone the repository and create a virtual environment:
+   ```bash
+   git clone <repo_url> discord-gemini-bot
+   cd discord-gemini-bot
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Copy `.env.example` to `.env` and fill in your API keys and configuration values:
+   ```bash
+   cp .env.example .env
+   ```
+4. Obtain your Discord Token from the [Discord Developer Portal](https://discord.com/developers/applications) and your Gemini API Key from [Google AI Studio](https://aistudio.google.com/). Fill these in your `.env` file.
+5. Run the bot:
+   ```bash
+   python bot.py
+   ```
+
+## Available Commands
+
+- `!setrole <role_name>`: Change the bot's personality for you.
+- `!roles`: List all available personalities.
+- `!me`: View your current profile, intimacy score, and chat statistics.
+- `!summary [n]`: Summarize the last `n` messages in the channel (default 50).
+- `!reset`: Clear your chat history with the bot.
