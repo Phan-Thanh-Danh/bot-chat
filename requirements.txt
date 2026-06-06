@@ -5,3 +5,5 @@ python-dotenv==1.0.1
 aiosqlite==0.20.0
 APScheduler==3.10.4
 aiohttp==3.9.5
+flask==3.0.3
+gunicorn==23.0.0

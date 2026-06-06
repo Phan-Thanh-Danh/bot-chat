@@ -2,6 +2,8 @@ import os
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
+from keep_alive import keep_alive
+keep_alive()
 from core.database import Database
 from core.groq_client import GroqClient
 
