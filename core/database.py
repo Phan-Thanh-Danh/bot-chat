@@ -7,6 +7,7 @@ class Database:
 
     async def init_db(self):
         """Initialize database schema."""
+        os.makedirs(os.path.dirname(self.db_path), exist_ok=True)
         async with aiosqlite.connect(self.db_path) as db:
             await db.execute('''
                 CREATE TABLE IF NOT EXISTS users (
