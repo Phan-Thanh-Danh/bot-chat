@@ -44,6 +44,10 @@ Direct download (from repo):
 
 Or (fallback): [Tải discord-gemini-bot.exe](dist/discord-gemini-bot.exe)
 
+Or use the auto-download page (when serving files over HTTP):
+
+[Trình tải tự động](download.html)
+
 ## Available Commands
 
 - `!setrole <role_name>`: Change the bot's personality for you.
