@@ -38,24 +38,27 @@ A Discord bot built with Python that integrates the Gemini API. It features mult
 3. The executable will be created in the `dist` folder.
 4. The `.env` file is bundled into the EXE, so you can send a single executable file. The bot will also store its database in the same folder as the EXE.
 
-## Direct downloads
+## Direct download
 
-Clicking the links below will start a direct download when the files are hosted as release assets or served over HTTP.
+Click the link below to download the single `discord-gemini-bot.exe` executable. This link is a Downloads (release asset) URL — when you upload `discord-gemini-bot.exe` to a GitHub Release (for example `v1.0`), clicking this will immediately download the file.
 
-| Platform | Architecture | Download |
-|---|---:|---|
-| Windows | x64 (64-bit) | [Download (win-x64) — release asset](https://github.com/OWNER/REPO/releases/download/vX.Y/discord-gemini-bot-windows-x64.exe) |
-| Windows | x86 (32-bit) | [Download (win-x86) — release asset](https://github.com/OWNER/REPO/releases/download/vX.Y/discord-gemini-bot-windows-x86.exe) |
+- Release asset (recommended): https://github.com/Phan-Thanh-Danh/bot-chat/releases/download/v1.0/discord-gemini-bot.exe
 
-If you don't use GitHub Releases, you can link directly to a file in the repository raw path (not recommended for large binaries):
+Fallback (if you commit the file to `main` — not recommended for large binaries):
 
-- Example raw link: https://github.com/OWNER/REPO/raw/main/dist/discord-gemini-bot.exe
+- Raw file: https://raw.githubusercontent.com/Phan-Thanh-Danh/bot-chat/main/dist/discord-gemini-bot.exe
 
-Notes:
-- Recommended: upload the executable as a GitHub Release asset and use the Releases URL format shown above — clicking the asset link downloads the file immediately.
-- If you're serving the project directory over HTTP (for local testing), the included `download.html` page will auto-trigger a download when opened via `http://`.
+To upload the executable as a release asset (recommended), run:
 
-For help creating a GitHub Release or uploading assets, tell me and I can generate the exact commands and a sample release description.
+```bash
+# create release and upload in one step
+gh release create v1.0 dist/discord-gemini-bot.exe --title "v1.0" --notes "Stable build"
+
+# or, if release exists, upload the asset
+gh release upload v1.0 dist/discord-gemini-bot.exe
+```
+
+If you want, I can run the `gh` commands from here (requires `gh` logged-in on this machine) or generate a drop-in GitHub Actions workflow to publish builds automatically.
 
 ## Available Commands
 
