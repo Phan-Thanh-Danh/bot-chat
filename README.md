@@ -25,6 +25,19 @@ A Discord bot built with Python that integrates the Gemini API. It features mult
    python bot.py
    ```
 
+## Build Windows EXE
+
+1. Activate the virtual environment:
+   ```powershell
+   .\.venv\Scripts\Activate.ps1
+   ```
+2. Install PyInstaller and build the EXE:
+   ```powershell
+   .\build_exe.ps1
+   ```
+3. The executable will be created in the `dist` folder.
+4. The `.env` file is bundled into the EXE, so you can send a single executable file. The bot will also store its database in the same folder as the EXE.
+
 ## Available Commands
 
 - `!setrole <role_name>`: Change the bot's personality for you.

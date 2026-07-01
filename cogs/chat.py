@@ -1,9 +1,14 @@
+import logging
+
 import discord
 from discord.ext import commands
 from core.database import Database
 from core.groq_client import GroqClient
 from core.role_config import ROLES
 from utils.helpers import download_image, chunk_text, is_image_attachment
+
+logger = logging.getLogger("bot.chat")
+
 
 class Chat(commands.Cog):
     def __init__(self, bot: commands.Bot, db: Database, groq: GroqClient):
@@ -18,13 +23,24 @@ class Chat(commands.Cog):
 
         is_dm = isinstance(message.channel, discord.DMChannel)
         is_mentioned = self.bot.user in message.mentions
-        
+
+        logger.info(
+            "Incoming message | user=%s (%s) | channel=%s | dm=%s | mentioned=%s | content=%r | attachments=%d",
+            message.author,
+            message.author.id,
+            message.channel,
+            is_dm,
+            is_mentioned,
+            message.content,
+            len(message.attachments),
+        )
+
         if not (is_dm or is_mentioned):
             return
 
         discord_id = str(message.author.id)
         user = await self.db.get_or_create_user(discord_id)
-        
+
         has_image_attachment = False
         image_bytes = None
         image_mime = None
@@ -47,15 +63,18 @@ class Chat(commands.Cog):
         if not content and has_image_attachment and not image_bytes:
             content = "Hãy mô tả và phân tích ảnh này cho tôi."
 
+        logger.info("Processing message for user=%s | role=%s | has_image=%s | normalized_content=%r", discord_id, user["current_role"], has_image_attachment, content)
+
         await self.db.add_message(discord_id, content, is_bot=False)
         new_intimacy = await self.db.increment_intimacy(discord_id, points=1)
         history = await self.db.get_history(discord_id)
-        
+
         current_role = user['current_role']
         role_config = ROLES.get(current_role, ROLES['default'])
-        
+
         async with message.channel.typing():
             try:
+                logger.info("Sending request to Groq for user=%s", discord_id)
                 response_text = await self.groq.chat(
                     user_id=discord_id,
                     message=content,
@@ -65,14 +84,16 @@ class Chat(commands.Cog):
                     image_bytes=image_bytes,
                     mime_type=image_mime
                 )
-                
+
+                logger.info("Bot reply to user=%s | response=%r", discord_id, response_text)
                 chunks = chunk_text(response_text)
                 for chunk in chunks:
                     await message.reply(chunk)
-                    
+
                 await self.db.add_message(discord_id, response_text, is_bot=True)
-                
+
             except Exception as e:
+                logger.exception("Error handling message from user=%s", discord_id)
                 await message.reply(str(e))
 
 def setup(bot):
