@@ -38,6 +38,12 @@ A Discord bot built with Python that integrates the Gemini API. It features mult
 3. The executable will be created in the `dist` folder.
 4. The `.env` file is bundled into the EXE, so you can send a single executable file. The bot will also store its database in the same folder as the EXE.
 
+Direct download (from repo):
+
+<a href="dist/discord-gemini-bot.exe" download style="text-decoration:underline;">Tải discord-gemini-bot.exe</a>
+
+Or (fallback): [Tải discord-gemini-bot.exe](dist/discord-gemini-bot.exe)
+
 ## Available Commands
 
 - `!setrole <role_name>`: Change the bot's personality for you.
