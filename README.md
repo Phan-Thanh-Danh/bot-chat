@@ -38,15 +38,24 @@ A Discord bot built with Python that integrates the Gemini API. It features mult
 3. The executable will be created in the `dist` folder.
 4. The `.env` file is bundled into the EXE, so you can send a single executable file. The bot will also store its database in the same folder as the EXE.
 
-Direct download (from repo):
+## Direct downloads
 
-<a href="dist/discord-gemini-bot.exe" download style="text-decoration:underline;">Tải discord-gemini-bot.exe</a>
+Clicking the links below will start a direct download when the files are hosted as release assets or served over HTTP.
 
-Or (fallback): [Tải discord-gemini-bot.exe](dist/discord-gemini-bot.exe)
+| Platform | Architecture | Download |
+|---|---:|---|
+| Windows | x64 (64-bit) | [Download (win-x64) — release asset](https://github.com/OWNER/REPO/releases/download/vX.Y/discord-gemini-bot-windows-x64.exe) |
+| Windows | x86 (32-bit) | [Download (win-x86) — release asset](https://github.com/OWNER/REPO/releases/download/vX.Y/discord-gemini-bot-windows-x86.exe) |
 
-Or use the auto-download page (when serving files over HTTP):
+If you don't use GitHub Releases, you can link directly to a file in the repository raw path (not recommended for large binaries):
 
-[Trình tải tự động](download.html)
+- Example raw link: https://github.com/OWNER/REPO/raw/main/dist/discord-gemini-bot.exe
+
+Notes:
+- Recommended: upload the executable as a GitHub Release asset and use the Releases URL format shown above — clicking the asset link downloads the file immediately.
+- If you're serving the project directory over HTTP (for local testing), the included `download.html` page will auto-trigger a download when opened via `http://`.
+
+For help creating a GitHub Release or uploading assets, tell me and I can generate the exact commands and a sample release description.
 
 ## Available Commands
 
